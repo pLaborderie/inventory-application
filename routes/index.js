@@ -11,7 +11,6 @@ router.get('/category', async function(req, res, next) {
   try {
     const prisma = new PrismaClient();
     const categories = await prisma.category.findMany();
-    console.log(categories);
     res.render('category_list', { categories: categories });
   } catch (err) {
     return next(err);
