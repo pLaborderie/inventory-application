@@ -1,0 +1,30 @@
+{% macro link(href, name, icon) %}
+<a href="{{ href }}" class="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md custom-navbar-link">
+  {{ icon | safe }}
+  {{ name }}
+</a>
+{% endmacro  %}
+
+<script type="text/javascript">
+  const links = document.querySelectorAll('.custom-navbar-link');
+  const classes = ['bg-gray-900', 'text-white', 'text-gray-300', 'hover:bg-gray-700', 'hover:text-white'];
+  const iconsClasses = ['text-gray-300', 'text-gray-400', 'group-hover:text-gray-300'];
+  console.log(links);
+
+  links.forEach(link => {
+    const icon = link.querySelector('.link-icon');
+    console.log(icon);
+    const currentPath = window.location.pathname;
+    const toggleLink = () => classes.forEach(cssClass => link.classList.toggle(cssClass));
+    const toggleIcon = () => iconsClasses.forEach(cssClass => icon.classList.toggle(cssClass));
+    const toggle = () => { toggleLink(); toggleIcon(); };
+    if (currentPath === '/' && link.getAttribute('href') === '/') {
+      toggle();
+    } else if (link.getAttribute('href') !== '/') {
+      const isActive = currentPath.startsWith(link.getAttribute('href'));
+      if (isActive) {
+        toggle();
+      }
+    }
+  });
+</script>
