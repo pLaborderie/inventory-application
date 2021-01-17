@@ -37,6 +37,11 @@
             <p class="mt-2 text-sm text-gray-500">Write a few sentences about this category.</p>
           </div>
         </div>
+        {% if errors %}
+          {% for error in errors %}
+            <p class="mt-2 text-sm text-red-600">{{ error.msg }}</p>
+          {% endfor %}
+        {% endif %}
       </div>
     </div>
 
