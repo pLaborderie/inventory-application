@@ -28,19 +28,54 @@ module.exports = {
       await prisma.$disconnect();
     }
   },
-  getItem: async (req, res, next) => {
+  getCategoryForm: async (req, res, next) => {
     const prisma = new PrismaClient();
     try {
-      const id = parseInt(req.params.id, 10);
-      const item = await prisma.item.findFirst({ where: { id }, include: { category: true } });
-      if (!item) {
-        throw createError(404, 'Item not found');
+      if (req.params.id) {
+        // Edit form
+        const category = await prisma.category.findUnique({ where: { id: parseInt(req.params.id) }});
+        res.render('category_form', { category });
+      } else {
+        // Create form
+        res.render('category_form');
       }
-      res.render('item', { item });
     } catch (err) {
       return next(err);
     } finally {
       await prisma.$disconnect();
     }
   },
+  createCategory: async (req, res, next) => {
+    const prisma = new PrismaClient();
+    try {
+      const newCategory = await prisma.category.create({
+        data: {
+          title: req.body.title,
+          description: req.body.description,
+        },
+      });
+      return res.redirect('/category/' + newCategory.id);
+    } catch (err) {
+      return next(err);
+    } finally {
+      await prisma.$disconnect();
+    }
+  },
+  editCategory: async (req, res, next) => {
+    const prisma = new PrismaClient();
+    try {
+      const editedCategory = await prisma.category.update({
+        where: { id: parseInt(req.params.id) },
+        data: {
+          title: req.body.title,
+          description: req.body.description,
+        },
+      });
+      return res.redirect('/category/' + editedCategory.id);
+    } catch (err) {
+      return next(err);
+    } finally {
+      await prisma.$disconnect();
+    }
+  }
 }
