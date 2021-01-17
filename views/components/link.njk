@@ -9,11 +9,9 @@
   const links = document.querySelectorAll('.custom-navbar-link');
   const classes = ['bg-gray-900', 'text-white', 'text-gray-300', 'hover:bg-gray-700', 'hover:text-white'];
   const iconsClasses = ['text-gray-300', 'text-gray-400', 'group-hover:text-gray-300'];
-  console.log(links);
 
   links.forEach(link => {
     const icon = link.querySelector('.link-icon');
-    console.log(icon);
     const currentPath = window.location.pathname;
     const toggleLink = () => classes.forEach(cssClass => link.classList.toggle(cssClass));
     const toggleIcon = () => iconsClasses.forEach(cssClass => icon.classList.toggle(cssClass));
