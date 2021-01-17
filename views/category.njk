@@ -1,0 +1,33 @@
+{% extends "layout.njk" %}
+{% block header %}
+  Category details
+{% endblock %}
+{% block content %}
+  <div>
+    <div>
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        {{ category.title }}
+      </h3>
+      <p class="mt-1 max-w-2xl text-sm text-gray-500">
+        {{ category.description }}
+      </p>
+    </div>
+    <div class="mt-5 border-t border-gray-200">
+      <dl class="sm:divide-y sm:divide-gray-200">
+        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+          <dt class="text-sm font-medium text-gray-500">
+            Teas
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <ul class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+              {% from 'components/tea_card.njk' import teaCard %}
+              {% for item in category.items %}
+                {{ teaCard(item) }}
+              {% endfor %}
+            </ul>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+{% endblock %}

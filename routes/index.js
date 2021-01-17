@@ -1,20 +1,14 @@
-const { PrismaClient } = require('@prisma/client');
 var express = require('express');
 var router = express.Router();
 
+const categoryController = require('../controllers/categoryController');
+
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+  res.redirect('/category');
 });
 
-router.get('/category', async function(req, res, next) {
-  try {
-    const prisma = new PrismaClient();
-    const categories = await prisma.category.findMany();
-    res.render('category_list', { categories: categories });
-  } catch (err) {
-    return next(err);
-  }
-});
+router.get('/category', categoryController.categoryList);
+router.get('/category/:id', categoryController.getCategory);
 
 module.exports = router;

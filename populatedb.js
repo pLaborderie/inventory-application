@@ -45,6 +45,17 @@ async function seed() {
       price: 4.3,
       stock: 10,
       category: {
+        connect: { id: blackTea.id }
+      },
+    }
+  });
+  await prisma.item.create({
+    data: {
+      name: 'Thé sencha',
+      description: 'Du thé japonais avec le goût de gazon',
+      price: 10.99,
+      stock: 45,
+      category: {
         connect: { id: greenTea.id }
       },
     }
