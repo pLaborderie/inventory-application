@@ -3,6 +3,9 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function seed() {
+  // Delete all data
+  await prisma.item.deleteMany();
+  await prisma.category.deleteMany();
   // Create categories
   const blackTea = await prisma.category.create({
     data: {
