@@ -1,0 +1,10 @@
+{% extends "layout.njk" %}
+{% block header %}Teas{% endblock %}
+{% block content %}
+  <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {% from 'components/tea_card.njk' import teaCard %}
+    {% for item in items %}
+      {{ teaCard(item) }}
+    {% endfor %}
+  </ul>
+{% endblock %}
