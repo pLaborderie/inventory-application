@@ -11,5 +11,6 @@ router.get('/', function(req, res) {
 router.get('/category', categoryController.categoryList);
 router.get('/category/:id', categoryController.getCategory);
 router.get('/item', itemController.itemList);
+router.get('/item/:id', itemController.getItem);
 
 module.exports = router;
