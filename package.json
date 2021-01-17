@@ -3,13 +3,29 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "npm run build:css && node ./bin/www",
+    "dev": "nodemon -e js,njk,html,json,mjs ./bin/www",
+    "build:css": "postcss public/stylesheets/style.css -o public/stylesheets/compiled.css"
   },
   "dependencies": {
+    "autoprefixer": "^10.2.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "morgan": "~1.9.1",
-    "nunjucks": "^3.2.2"
+    "nunjucks": "^3.2.2",
+    "postcss": "^8.2.4",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.18.0",
+    "nodemon": "^2.0.7"
+  },
+  "postcss": {
+    "plugins": {
+      "tailwindcss": {},
+      "autoprefixer": {}
+    }
   }
 }
