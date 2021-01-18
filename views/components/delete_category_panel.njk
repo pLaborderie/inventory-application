@@ -1,11 +1,14 @@
 {% macro deleteCategoryPanel(category) %}
+  {% from 'components/tea_card.njk' import teaCard %}
   {% if category.items and category.items.length > 0 %}
-    <p>Please delete the following teas before attempting to delete this category:</p>
-    {% for item in category.items %}
-      <p>{{ item.name }}</p>
-    {% endfor %}
+    <h3 class="mb-3">Please delete the following teas before attempting to delete this category:</h3>
+    <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {% for item in category.items %}
+        {{ teaCard(item) }}
+      {% endfor %}
+    </ul>
   {% else %}
-    {% from 'delete_panel.njk' import deletePanel %}
+    {% from 'components/delete_panel.njk' import deletePanel %}
     {{ deletePanel('Delete category ' + category.title, 'Once this category is deleted, it is impossible to get it back.', '/category/' + category.id + '/delete') }}
   {% endif %}
 {% endmacro %}

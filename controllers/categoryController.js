@@ -46,6 +46,17 @@ module.exports = {
       await prisma.$disconnect();
     }
   },
+  getDeleteCategory: async (req, res, next) => {
+    const prisma = new PrismaClient();
+    try {
+      const category = await prisma.category.findUnique({ where: { id: parseInt(req.params.id) }, include: { items: true } });
+      res.render('category_delete', { category });
+    } catch (err) {
+      return next(err);
+    } finally {
+      await prisma.$disconnect();
+    }
+  },
   createCategory: [
     body('title', 'The title is required').trim().isLength({ min: 1 }).escape(),
     body('description', 'The description is required').trim().isLength({ min: 1 }).escape(),
@@ -102,4 +113,15 @@ module.exports = {
       }
     },
   ],
+  deleteCategory: async (req, res, next) => {
+    const prisma = new PrismaClient();
+    try {
+      await prisma.category.delete({ where: { id: parseInt(req.params.id) } });
+      res.redirect('/category');
+    } catch (err) {
+      return next(err);
+    } finally {
+      await prisma.$disconnect();
+    }
+  }
 };

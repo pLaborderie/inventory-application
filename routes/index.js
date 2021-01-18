@@ -12,7 +12,9 @@ router.get('/category', categoryController.categoryList);
 router.get('/category/create', categoryController.getCategoryForm);
 router.get('/category/:id', categoryController.getCategory);
 router.get('/category/:id/edit', categoryController.getCategoryForm);
+router.get('/category/:id/delete', categoryController.getDeleteCategory);
 router.post('/category/:id/edit', categoryController.editCategory);
+router.post('/category/:id/delete', categoryController.deleteCategory);
 router.post('/category', categoryController.createCategory);
 
 
