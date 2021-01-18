@@ -17,6 +17,10 @@ router.post('/category', categoryController.createCategory);
 
 
 router.get('/item', itemController.itemList);
+router.get('/item/create', itemController.getItemForm);
 router.get('/item/:id', itemController.getItem);
+router.get('/item/:id/edit', itemController.getItemForm);
+router.post('/item', itemController.createOrEditItem);
+router.post('/item/:id/edit', itemController.createOrEditItem);
 
 module.exports = router;
