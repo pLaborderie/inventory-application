@@ -51,6 +51,17 @@ module.exports = {
       await prisma.$disconnect();
     }
   },
+  getDeleteItem: async (req, res, next) => {
+    const prisma = new PrismaClient();
+    try {
+      const item = await prisma.item.findUnique({ where: { id: parseInt(req.params.id) }});
+      return res.render('item_delete', { item });
+    } catch (err) {
+      return next(err);
+    } finally {
+      await prisma.$disconnect();
+    }
+  },
   createOrEditItem: [
     body('name', 'The name is required').trim().isLength({ min: 1 }).escape(),
     body('description', 'The description is required').trim().isLength({ min: 1 }).escape(),
@@ -98,5 +109,16 @@ module.exports = {
         await prisma.$disconnect();
       }
     },
-  ]
+  ],
+  deleteItem: async (req, res, next) => {
+    const prisma = new PrismaClient();
+    try {
+      await prisma.item.delete({ where: { id: parseInt(req.params.id) } });
+      return res.redirect('/item');
+    } catch (err) {
+      return next(err);
+    } finally {
+      await prisma.$disconnect();
+    }
+  }
 }

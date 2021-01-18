@@ -20,7 +20,9 @@ router.get('/item', itemController.itemList);
 router.get('/item/create', itemController.getItemForm);
 router.get('/item/:id', itemController.getItem);
 router.get('/item/:id/edit', itemController.getItemForm);
+router.get('/item/:id/delete', itemController.getDeleteItem);
 router.post('/item', itemController.createOrEditItem);
 router.post('/item/:id/edit', itemController.createOrEditItem);
+router.post('/item/:id/delete', itemController.deleteItem);
 
 module.exports = router;

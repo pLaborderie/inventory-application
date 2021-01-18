@@ -1,4 +1,4 @@
 {% macro deleteItemPanel(item) %}
-  {% from 'delete_panel.njk' import deletePanel %}
+  {% from 'components/delete_panel.njk' import deletePanel %}
   {{ deletePanel('Delete tea ' + item.name, 'Once this tea is deleted, it is impossible to get it back.', '/item/' + item.id + '/delete') }}
 {% endmacro %}
