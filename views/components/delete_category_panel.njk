@@ -1,0 +1,11 @@
+{% macro deleteCategoryPanel(category) %}
+  {% if category.items and category.items.length > 0 %}
+    <p>Please delete the following teas before attempting to delete this category:</p>
+    {% for item in category.items %}
+      <p>{{ item.name }}</p>
+    {% endfor %}
+  {% else %}
+    {% from 'delete_panel.njk' import deletePanel %}
+    {{ deletePanel('Delete category ' + category.title, 'Once this category is deleted, it is impossible to get it back.', '/category/' + category.id + '/delete') }}
+  {% endif %}
+{% endmacro %}
