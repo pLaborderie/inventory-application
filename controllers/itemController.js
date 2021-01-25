@@ -1,6 +1,8 @@
 const { PrismaClient } = require('@prisma/client');
 const { body, validationResult } = require('express-validator');
 const createError = require('http-errors');
+const multer = require('multer');
+const upload = multer({})
 
 const formatPrice = price => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(price);
 

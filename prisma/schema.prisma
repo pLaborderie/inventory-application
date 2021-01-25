@@ -17,6 +17,7 @@ model Item {
   description String
   price Float
   stock Int @default(0)
+  image String?
   category Category @relation(fields: [categoryId], references: [id])
   categoryId Int
 }

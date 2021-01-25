@@ -71,6 +71,15 @@
               <input {% if item %}value="{{ item.stock }}"{% endif %} type="number" min="0" name="stock" id="stock" class="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
             </div>
           </div>
+
+          <div class="sm:col-span-4">
+            <label for="image" class="block text-sm font-medium text-gray-700">
+              Image
+            </label>
+            <div class="mt-1 flex rounded-md shadow-sm">
+              <input {% if item %}value="{{ item.image }}"{% endif %} type="file" name="image" id="image" class="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300">
+            </div>
+          </div>
         </div>
         {% if errors %}
           {% for error in errors %}
